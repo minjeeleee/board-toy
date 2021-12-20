@@ -17,9 +17,9 @@ public class JDBCTemplate {
       try {
          Class.forName("oracle.jdbc.driver.OracleDriver");
          
-         final String DB_URL="jdbc:oracle:thin:@dbfutsal_high?TNS_ADMIN=C:/CODE/Wallet_DBfutsal";
-   	     final String DB_USER = "ADMIN";
-   	     final String DB_PASSWORD = "sY8@88iytBRU4GJ";
+         final String DB_URL="jdbc:oracle:thin:@localhost:1521:xe";
+   	     final String DB_USER = "BOARD_TOY";
+   	     final String DB_PASSWORD = "1234";
    	     final String CONN_FACTORY_CLASS_NAME="oracle.jdbc.pool.OracleDataSource";
 	   	   
   	    pds = PoolDataSourceFactory.getPoolDataSource();

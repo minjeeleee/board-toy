@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+body {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* .fileBox input[type="file"] { 
+    파일 필드 숨기기 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0; 
+} */
+
+.wt-board {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}
+
+.file-list{
+	margin-top: 10px;	
+}    
+.wt-board form{
+    width: 100%;
+    
+}
+
+.input-title-file {
+    width: 100%;
+    display: flex;
+}
+
+.user-check-box{
+	width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.input-title-file input[type="text"] {
+    width: 100%;
+    border:1px solid rgb(255, 126, 126);
+    border-radius: 8px;
+    color: rgb(112, 112, 112);
+    background-color: rgb(255, 126, 126);
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+
+.file-upload{
+	width: 97%;
+    border:1px solid rgb(255, 126, 126);
+    border-radius: 8px;
+    color: rgb(112, 112, 112);
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    padding: 10px 10px;
+    font-size: 12px;
+    margin-top:  10px;
+}
+
+
+.user-check {
+    width: 100%;
+    border:1px solid rgb(255, 126, 126);
+    border-radius: 8px;
+    color: rgb(112, 112, 112);
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-right: 10px;
+}
+
+.input-title-file input:focus {
+    outline: none;
+}
+
+.input-title-file input::placeholder {
+    color: rgb(209, 209, 209);
+}
+
+.fileBox {
+    padding: 10px 10px;
+    text-align: center;
+    width: 20%;
+    color: #fff;
+    border:1px solid rgb(255, 126, 126);
+    background-color: rgb(255, 126, 126);
+    border-radius: 8px;
+    cursor: pointer;
+    margin: auto;
+}
+
+
+.board-wrap {
+    /* height: 100vh; */
+    border-radius: 20px;
+    width: 80%;
+    min-width: 689px;
+    margin-top: 60px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.178);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-content {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.content {
+    padding: 10px;
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border:1px solid rgb(255, 126, 126);
+    color: rgb(112, 112, 112);
+    resize: none;
+}
+
+.content:focus {
+    outline: none;
+}
+
+.content::placeholder {
+    color: rgb(209, 209, 209);
+}
+
+.submit-button {
+    width: 100%;
+    border:1px solid rgb(255, 126, 126);
+    background-color: rgb(255, 126, 126);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 10px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.submit-button:hover {
+    background-color: rgba(255, 126, 126, 0);
+    color: rgb(255, 126, 126);
+}
+
+
+
+@keyframes bling{
+    0% {
+        border:1px solid rgba(255, 126, 126, 0);
+    }
+    50% {
+        border:1px solid rgb(255, 126, 126);
+    }
+    100% {
+        border:1px solid rgba(255, 126, 126, 0);
+    }
+}

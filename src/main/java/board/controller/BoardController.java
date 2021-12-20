@@ -57,33 +57,29 @@ public class BoardController extends HttpServlet {
 		case "board-modify": 
 			boardModify(request,response);
 			break;
-		case "modify": 
-			modify(request,response);
-			break;
 			
 		default:
 		}
 	}
 
 
-	private void modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void boardModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FileUtil util = new FileUtil();
 		MultiPartParams params = util.fileUpload(request);
 		
 		BoardDTO board = new BoardDTO();
-		board.setBdIdx(Integer.parseInt(request.getParameter("bdIdx")));
+		board.setBdIdx(Integer.parseInt(params.getParameter("bdIdx")));
 		board.setContent(params.getParameter("content"));
 		board.setTitle(params.getParameter("title"));
-		board.setWriter(params.getParameter("writer"));
 		
 		List<FileDTO> fileDTOs = params.getFilesInfo();
-		
+		for (FileDTO fileDTO : fileDTOs) {
+			fileDTO.setBdIdx(Integer.parseInt(params.getParameter("bdIdx")));
+		}
+		System.out.println(board);
+		System.out.println(fileDTOs);
 		boardService.updateBoard(board,fileDTOs);
-		
-	}
-
-	private void boardModify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/board/board-modify").forward(request, response);
+		response.sendRedirect("/board/board-list");
 	}
 
 	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -94,7 +90,6 @@ public class BoardController extends HttpServlet {
 
 	private void boardDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bdIdx = Integer.parseInt(request.getParameter("bdIdx"));
-		
 		Map<String,Object> boardDetail = boardService.selectBoardDetail(bdIdx);
 		
 		request.setAttribute("boardDetail", boardDetail);
@@ -113,8 +108,9 @@ public class BoardController extends HttpServlet {
 		board.setWriter(params.getParameter("writer"));
 		
 		List<FileDTO> fileDTOs = params.getFilesInfo();
+		
 		boardService.insertBoard(board, fileDTOs);
-		response.sendRedirect("/");
+		response.sendRedirect("/board/board-list");
 	}
 
 	private void boardForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

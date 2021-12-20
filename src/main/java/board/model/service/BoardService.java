@@ -79,7 +79,7 @@ public class BoardService {
 			
 			boardDao.deleteFile(board.getBdIdx(),conn);
 			for (FileDTO fileDTO : fileDTOs) {
-				boardDao.insertFile(fileDTO,conn);
+				boardDao.updateFile(fileDTO,conn);
 			}
 			template.commit(conn);
 		}catch (DataAccessException e) {

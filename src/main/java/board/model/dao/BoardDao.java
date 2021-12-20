@@ -21,7 +21,7 @@ public class BoardDao {
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String query = "select * from board";
+		String query = "select * from board where is_del = 0";
 		try {
 			pstm = conn.prepareStatement(query);
 			rset = pstm.executeQuery();
@@ -108,7 +108,7 @@ public class BoardDao {
 		int res = 0;
 		PreparedStatement pstm = null;
 		
-		String query = "update  board set isDel=1 where bd_idx=?";
+		String query = "update  board set is_del=1 where bd_idx=?";
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setInt(1, bdIdx);
@@ -127,7 +127,7 @@ public class BoardDao {
 		int res = 0;
 		PreparedStatement pstm = null;
 		
-		String query = "update  board set view=view+1 where bd_idx=?";
+		String query = "update board set views = views+1 where bd_idx=?";
 		try {
 			pstm = conn.prepareStatement(query);
 			pstm.setInt(1, bdIdx);
@@ -149,7 +149,7 @@ public class BoardDao {
 		board.setPassword(rset.getInt("password"));
 		board.setRegDate(rset.getDate("reg_date"));
 		board.setTitle(rset.getString("title"));
-		board.setView(rset.getInt("view"));
+		board.setViews(rset.getInt("views"));
 		board.setWriter(rset.getString("writer"));
 		return board;
 	}
@@ -165,6 +165,27 @@ public class BoardDao {
 			pstm.setString(1, fileDTO.getOriginFileName());
 			pstm.setString(2, fileDTO.getRenameFileName());
 			pstm.setString(3, fileDTO.getSavePath());
+			pstm.executeUpdate();
+		} catch (SQLException e) {
+			throw new DataAccessException(e);
+		}finally {
+			template.close(pstm);
+		}
+		
+	}
+	
+	public void updateFile(FileDTO fileDTO, Connection conn) {
+		String sql = "insert into file_info (fl_idx,bd_idx,origin_file_name,rename_file_name,save_path) "
+				+ "values(sc_fl_idx.nextval,?,?,?,?)";
+		PreparedStatement pstm = null;
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setInt(1, fileDTO.getBdIdx());
+			pstm.setString(2, fileDTO.getOriginFileName());
+			pstm.setString(3, fileDTO.getRenameFileName());
+			pstm.setString(4, fileDTO.getSavePath());
 			pstm.executeUpdate();
 		} catch (SQLException e) {
 			throw new DataAccessException(e);

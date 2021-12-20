@@ -10,7 +10,7 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private int isDel;
-	private int view;
+	private int views;
 	private int password;
 	
 	public BoardDTO() {
@@ -65,12 +65,12 @@ public class BoardDTO {
 		this.isDel = isDel;
 	}
 
-	public int getView() {
-		return view;
+	public int getViews() {
+		return views;
 	}
 
-	public void setView(int view) {
-		this.view = view;
+	public void setViews(int views) {
+		this.views = views;
 	}
 
 	public int getPassword() {
@@ -84,12 +84,9 @@ public class BoardDTO {
 	@Override
 	public String toString() {
 		return "BoardDTO [bdIdx=" + bdIdx + ", writer=" + writer + ", regDate=" + regDate + ", title=" + title
-				+ ", content=" + content + ", isDel=" + isDel + ", view=" + view + ", password=" + password + "]";
+				+ ", content=" + content + ", isDel=" + isDel + ", views=" + views + ", password=" + password + "]";
 	}
 
-	
-	
-	
 	
 	
 }
