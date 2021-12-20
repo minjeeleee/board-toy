@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.exception.HandlableException;
 
-/**
- * Servlet implementation class ExceptionHandler
- */
+
 @WebServlet("/exception-handler")
 public class ExceptionHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -2,14 +2,13 @@ package common.code;
 
 public enum ErrorCode {
 	
-	DATABASE_ACCESS_ERROR("�뜲�씠�꽣踰좎씠�뒪�� �넻�떊 以� �뿉�윭媛� 諛쒖깮�븯���뒿�땲�떎"),
-	FAILED_VALIDATED_ERROR("�뜲�씠�꽣�쓽 �뼇�떇�씠 �쟻�빀�븯吏� �븡�뒿�땲�떎"),
-	MAIL_SEND_FAIL_ERROR("�씠硫붿씪 諛쒖넚 以� �뿉�윭媛� 諛쒖깮�븯���뒿�땲�떎"),
-	HTTP_CONNECT_ERROR("HTTP �넻�떊 以� �뿉�윭媛� 諛쒖깮�븯���뒿�땲�떎"),
-	AUTHENTICATION_FAILED_ERROR("�쑀�슚�븯吏� �븡�� �씤利앹엯�땲�떎"),
-	UNAUTHORIZED_PAGE("�젒洹� 沅뚰븳�씠 �뾾�뒗 �럹�씠吏� �엯�땲�떎"),
-	REDIRECT_LOGIN_PAGE_NO_MESSAGE("","/member/login-form"),
-	FAILED_FILE_UPLOAD_ERROR("�뙆�씪�뾽濡쒕뱶�뿉 �떎�뙣�뻽�뒿�땲�떎");
+	DATABASE_ACCESS_ERROR("데이터베이스와 통신 중 에러가 발생하였습니다"),
+	FAILED_VALIDATED_ERROR("데이터의 양식이 적합하지 않습니다"),
+	MAIL_SEND_FAIL_ERROR("이메일 발송 중 에러가 발생하였습니다"),
+	HTTP_CONNECT_ERROR("HTTP 통신 중 에러가 발생하였습니다"),
+	AUTHENTICATION_FAILED_ERROR("유효하지 않은 인증입니다"),
+	UNAUTHORIZED_PAGE("접근 권한이 없는 페이지 입니다"),
+	FAILED_FILE_UPLOAD_ERROR("파일업로드에 실해했습니다");
 	
 	public final String MSG;
 	public final String URL;
