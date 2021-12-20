@@ -11,7 +11,7 @@ public class BoardDTO {
 	private String content;
 	private int isDel;
 	private int views;
-	private int password;
+	private String password;
 	
 	public BoardDTO() {
 		// TODO Auto-generated constructor stub
@@ -73,11 +73,11 @@ public class BoardDTO {
 		this.views = views;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -87,6 +87,7 @@ public class BoardDTO {
 				+ ", content=" + content + ", isDel=" + isDel + ", views=" + views + ", password=" + password + "]";
 	}
 
+	
 	
 	
 }

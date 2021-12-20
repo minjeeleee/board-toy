@@ -19,7 +19,7 @@
     <div class="board-wrap">
        
         <div class="wt-board">
-            <form action="/board/upload" method="post" enctype="multipart/form-data">
+            <form action="/board/upload" method="post" id="board-form" enctype="multipart/form-data">
                 <div class="input-title-file">
                     <input type="text" name="title" placeholder="제목을 입력해 주세요." maxlength="20">
                 </div>
@@ -31,13 +31,13 @@
                 	<div class="fileBox">
 	                    <div>
 	                    	<label for="ex-file">닉네임</label>
-	                    	<input type="text" name="writer" class="user-check">
+	                    	<input type="text" name="writer" id="writer" class="user-check">
 	                    </div>
                 	</div>
 	                <div class="fileBox">
 	                	<div>
 	                    	<label for="ex-file">비밀번호</label>
-	                    	<input type="password" name="password" class="user-check" >
+	                    	<input type="password" name="password" id="password" class="user-check" >
 	                    </div>
 	                </div>
                 </div>
@@ -46,5 +46,30 @@
         </div>
         
     </div>
+    
+    <script type="text/javascript">
+    document.getElementById('board-form').addEventListener('submit',e=>{
+		   let writer = document.querySelector('#writer').value;
+		   let password = document.querySelector('#password').value;
+		  
+		   let pwReg = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.{4,})/;
+		   let writerReg = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/;
+		   
+		   if(!writerReg.test(writer)){
+			   alert('닉네임은 2~10글자로 설정해야 합니다. '); 
+			   e.preventDefault();
+		   }
+		   
+		   if(!pwReg.test(password)){
+			   alert('비밀번호는 숫자,영문 조합의 4글자 이상인 문자열입니다');
+			   e.preventDefault();
+		   }
+		   
+		  
+	   })
+    
+    
+    
+    </script>
 </body>
 </html>

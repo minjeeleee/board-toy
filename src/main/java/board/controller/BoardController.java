@@ -79,12 +79,18 @@ public class BoardController extends HttpServlet {
 		System.out.println(board);
 		System.out.println(fileDTOs);
 		boardService.updateBoard(board,fileDTOs);
-		response.sendRedirect("/board/board-list");
+		request.setAttribute("msg","수정 되었습니다");
+	    request.setAttribute("url", "/");
+	    request.getRequestDispatcher("/common/result").forward(request, response);
 	}
 
 	private void boardDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boardService.deleteBoard(Integer.parseInt(request.getParameter("bdIdx")));
-		response.sendRedirect("/board/board-list");
+		FileUtil util = new FileUtil();
+		MultiPartParams params = util.fileUpload(request);
+		boardService.deleteBoard(Integer.parseInt(params.getParameter("bdIdx")));
+		request.setAttribute("msg","삭제 되었습니다");
+	    request.setAttribute("url", "/");
+	    request.getRequestDispatcher("/common/result").forward(request, response);
 		
 	}
 
@@ -103,7 +109,7 @@ public class BoardController extends HttpServlet {
 		
 		BoardDTO board = new BoardDTO();
 		board.setContent(params.getParameter("content"));
-		board.setPassword(Integer.parseInt(params.getParameter("password")));
+		board.setPassword(params.getParameter("password"));
 		board.setTitle(params.getParameter("title"));
 		board.setWriter(params.getParameter("writer"));
 		

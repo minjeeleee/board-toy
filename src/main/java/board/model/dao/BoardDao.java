@@ -70,7 +70,7 @@ public class BoardDao {
 			pstm.setString(1, board.getWriter());
 			pstm.setString(2, board.getTitle());
 			pstm.setString(3, board.getContent());
-			pstm.setInt(4, board.getPassword());
+			pstm.setString(4, board.getPassword());
 			res = pstm.executeUpdate();
 			
 			
@@ -146,7 +146,7 @@ public class BoardDao {
 		board.setBdIdx(rset.getInt("bd_idx"));
 		board.setContent(rset.getString("content"));
 		board.setIsDel(rset.getInt("is_del"));
-		board.setPassword(rset.getInt("password"));
+		board.setPassword(rset.getString("password"));
 		board.setRegDate(rset.getDate("reg_date"));
 		board.setTitle(rset.getString("title"));
 		board.setViews(rset.getInt("views"));

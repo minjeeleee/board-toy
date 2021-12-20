@@ -76,7 +76,7 @@
 	    del.addEventListener('click', () => {
 	    	let pw = prompt("비밀번호를 입력하세요","password");
 	        if(pw == password){
-	        	location.href='/board/board-delete?bdIdx='+bdIdx;
+	        	form.setAttribute("action","/board/board-delete");
 	        }else{
 	        	alert('비밀번호가 일치하지 않아 수정이 불가합니다.');
 	        }
