@@ -41,9 +41,9 @@
                     </thead>
             
                     <tbody>
-                    	<c:forEach var="list" items="${boardList}" varStatus="status">
+                    	<c:forEach var="list" items="${boardList.board}" varStatus="status">
                             <tr class="board">
-                                <td class="td_num">${status.count}</td>
+                                <td class="td_num">${list.bdIdx}</td>
                                 <td class="td_title">
                                 <a href="/board/board-detail?bdIdx=${list.bdIdx}">
                                     ${list.title}
@@ -61,8 +61,10 @@
                     <a class="wt-button" href="/board/board-form">글쓰기</a>
                 </div>
                 <div class="paging">
-                    <a class="page-num red-border" href="#">1</a>
-                    <a class="page-num " href="#">2</a>
+                	<c:forEach begin="${boardList.paging.blockStart}" end="${boardList.paging.blockEnd}" var="p">
+						<a class="page-num red-border" href="${boardList.paging.url}?page=${p}">${p}</a>
+					</c:forEach>
+                
                 </div>
         </div>
     </div>

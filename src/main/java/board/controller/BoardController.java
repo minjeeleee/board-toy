@@ -124,7 +124,13 @@ public class BoardController extends HttpServlet {
 	}
 
 	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("boardList", boardService.selectBoardList());
+		String nowPage = request.getParameter("page");
+		int page = 1;
+		if(nowPage != null && !nowPage.equals("")) {
+			page = Integer.parseInt(nowPage);
+		}
+		Map<String,Object> boardList = boardService.selectBoardList(page);
+		request.setAttribute("boardList", boardList);
 		request.getRequestDispatcher("/board/board-list").forward(request, response);
 	}
 

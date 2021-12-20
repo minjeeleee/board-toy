@@ -30,13 +30,13 @@
                 <div class="user-check-box">
                 	<div class="fileBox">
 	                    <div>
-	                    	<label for="ex-file">닉네임</label>
+	                    	<label >닉네임</label>
 	                    	<input type="text" name="writer" id="writer" class="user-check">
 	                    </div>
                 	</div>
 	                <div class="fileBox">
 	                	<div>
-	                    	<label for="ex-file">비밀번호</label>
+	                    	<label >비밀번호</label>
 	                    	<input type="password" name="password" id="password" class="user-check" >
 	                    </div>
 	                </div>

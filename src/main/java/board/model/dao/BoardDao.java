@@ -15,26 +15,50 @@ import common.file.FileDTO;
 public class BoardDao {
 
 	JDBCTemplate template = JDBCTemplate.getInstance();
+
 	
-	public List<BoardDTO> selectBoardList(Connection conn){
-		List<BoardDTO> boardList = new ArrayList<BoardDTO>();
+	public List<BoardDTO> selectBoardList(Connection conn, int firstNum, int secondNum) {
+		List<BoardDTO> boardList = new ArrayList<>();
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+		String sql = "select * from (select rownum num, A.* from (select * from board where is_del = 0 order by bd_idx desc) A) where num between ? and ?";
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, firstNum);
+			pstm.setInt(2, secondNum);
+			rset = pstm.executeQuery();
+			while(rset.next()) {
+				boardList.add(convertRowToBoard(rset));
+			}
+		}catch(SQLException e) {
+			throw new DataAccessException(e);
+		} finally {
+			template.close(rset,pstm);
+		}
+		return boardList;
+	}
+	
+	public int selectBoardCount(Connection conn) {
+		int boardCnt = 0;
 		PreparedStatement pstm = null;
 		ResultSet rset = null;
 		
-		String query = "select * from board where is_del = 0";
+		String sql = "select count(*) count from board where is_del = 0";
+		
 		try {
-			pstm = conn.prepareStatement(query);
+			pstm = conn.prepareStatement(sql);
 			rset = pstm.executeQuery();
 			
-			while (rset.next()) {
-				boardList.add(convertRowToBoard(rset));
+			if(rset.next()) {
+				boardCnt = rset.getInt("count");
 			}
 		} catch (SQLException e) {
 			throw new DataAccessException(e);
-		}finally {
+		} finally {
 			template.close(rset, pstm);
 		}
-		return boardList;
+		return boardCnt;
 	}
 	
 	public BoardDTO selectBoardDetail(int bdIdx,Connection conn){

@@ -10,6 +10,7 @@ import board.model.dto.BoardDTO;
 import common.db.JDBCTemplate;
 import common.exception.DataAccessException;
 import common.file.FileDTO;
+import common.paging.Paging;
 
 
 public class BoardService {
@@ -17,18 +18,29 @@ public class BoardService {
 	private JDBCTemplate template = JDBCTemplate.getInstance();
 	private BoardDao boardDao =  new BoardDao();
 	
-	public List<BoardDTO> selectBoardList() {
+	
+	public Map<String,Object> selectBoardList(int page) {
 		
-		Connection conn = template.getConnection();
 		List<BoardDTO> boardList = null;
+		Paging pageUtil = null;
+		Connection conn = template.getConnection();
+		int cntPerPage = 10;
 		try {
-			boardList = boardDao.selectBoardList(conn);
+			boardList = boardDao.selectBoardList(conn,1+(page-1)*cntPerPage,page*cntPerPage);
 			
-		}finally {
-			template.close(conn);	
+			pageUtil = Paging.builder()
+					.url("/board/board-list")
+					.total(boardDao.selectBoardCount(conn))
+					.cntPerPage(cntPerPage)
+					.blockCnt(3)
+					.curPage(page)
+					.build();
+		} finally {
+			template.close(conn);
 		}
-		return boardList;
+		return Map.of("board",boardList,"paging",pageUtil);
 	}
+
 	
 	public Map<String, Object> selectBoardDetail(int bdIdx){
 		Connection conn = template.getConnection();
