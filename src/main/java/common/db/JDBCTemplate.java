@@ -29,30 +29,17 @@ public class JDBCTemplate {
         pds.setPassword(DB_PASSWORD);
         pds.setConnectionPoolName("JDBC_UCP_POOL");
         
-        // Default is 0. Set the initial number of connections to be created
-        // when UCP is started.
         pds.setInitialPoolSize(5);
 
-        // Default is 0. Set the minimum number of connections
-        // that is maintained by UCP at runtime.
         pds.setMinPoolSize(5);
 
-        // Default is Integer.MAX_VALUE (2147483647). Set the maximum number of
-        // connections allowed on the connection pool.
         pds.setMaxPoolSize(20);
 
-        // Default is 30secs. Set the frequency in seconds to enforce the timeout
-        // properties. Applies to inactiveConnectionTimeout(int secs),
-        // AbandonedConnectionTimeout(secs)& TimeToLiveConnectionTimeout(int secs).
-        // Range of valid values is 0 to Integer.MAX_VALUE. .
         pds.setTimeoutCheckInterval(5);
 
-        // Default is 0. Set the maximum time, in seconds, that a
-        // connection remains available in the connection pool.
         pds.setInactiveConnectionTimeout(10);
          
       } catch (ClassNotFoundException | SQLException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -86,7 +73,6 @@ public class JDBCTemplate {
       try {
          conn.commit();
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -95,7 +81,6 @@ public class JDBCTemplate {
       try {
          conn.rollback();
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -106,7 +91,6 @@ public class JDBCTemplate {
             conn.close();
          }
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -117,7 +101,6 @@ public class JDBCTemplate {
             stmt.close();
          }
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -128,7 +111,6 @@ public class JDBCTemplate {
             rset.close();
          }
       } catch (SQLException e) {
-         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }
@@ -149,17 +131,4 @@ public class JDBCTemplate {
       close(conn);
    }
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-
-
 }

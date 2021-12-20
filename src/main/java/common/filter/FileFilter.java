@@ -1,4 +1,4 @@
-package com.kh.toy.common.filter;
+package common.filter;
 
 import java.io.IOException;
 import java.net.URLEncoder;
