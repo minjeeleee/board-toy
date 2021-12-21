@@ -19,13 +19,18 @@ public class BoardService {
 	private BoardDao boardDao =  new BoardDao();
 	
 	
-	public Map<String,Object> selectBoardList(int page) {
+	public Map<String,Object> selectBoardList(String nowPage) {
 		
 		List<BoardDTO> boardList = null;
 		Paging pageUtil = null;
 		Connection conn = template.getConnection();
 		int cntPerPage = 10;
 		try {
+			int page = 1;
+			if(nowPage != null && !nowPage.equals("")) {
+				page = Integer.parseInt(nowPage);
+			}
+			
 			boardList = boardDao.selectBoardList(conn,1+(page-1)*cntPerPage,page*cntPerPage);
 			
 			pageUtil = Paging.builder()
